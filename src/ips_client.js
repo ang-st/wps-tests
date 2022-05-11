@@ -73,8 +73,19 @@ class IpsClient {
     })
   }
 
-  async getInvoices () {
+  async listInvoices () {
     const route = '/V1/member/invoices'
+    return await rp({
+      uri: `${this.root}${route}`,
+      json: true,
+      method: 'GET',
+      headers: this.auth_headers
+
+    })
+  }
+
+  async getInvoice (uuid) {
+    const route = `/V1/member/invoice/${uuid}`
     return await rp({
       uri: `${this.root}${route}`,
       json: true,
